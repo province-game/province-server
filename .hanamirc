@@ -1,0 +1,3 @@
+project=province
+test=rspec
+template=erb
