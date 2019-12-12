@@ -1,7 +1,7 @@
 require 'hanami/helpers'
 require 'hanami/assets'
 
-module API
+module Api
   class Application < Hanami::Application
     configure do
       ##
@@ -256,7 +256,7 @@ module API
       # See: http://www.rubydoc.info/gems/hanami-view#Configuration
       view.prepare do
         include Hanami::Helpers
-        include API::Assets::Helpers
+        include Api::Assets::Helpers
       end
     end
 
