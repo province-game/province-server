@@ -1,12 +1,11 @@
 module Api
   module Controllers
     module Sessions
-      class Create
+      class Failure
         include Api::Action
-        expose :user
 
-        def call(params)
-          @user = {}
+        def call(_params)
+          status 404, 'Not found'
         end
       end
     end

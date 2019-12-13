@@ -81,7 +81,7 @@ module Api
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      # sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
+      sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
 
       # Configure Rack middleware for this application
       #
@@ -246,8 +246,8 @@ module Api
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
-        # include MyAuthentication # included in all the actions
-        # before :authenticate!    # run an authentication before callback
+        include Api::Authentication
+        before :authenticate!    # run an authentication before callback
       end
 
       # Configure the code that will yield each time Web::View is included
@@ -257,6 +257,14 @@ module Api
       view.prepare do
         include Hanami::Helpers
         include Api::Assets::Helpers
+      end
+
+      middleware.use Warden::Manager do |manager|
+        manager.failure_app = Api::Controllers::Sessions::Failure.new
+      end
+
+      middleware.use OmniAuth::Builder do
+        provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
       end
     end
 

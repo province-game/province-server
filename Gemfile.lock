@@ -168,6 +168,8 @@ GEM
     transproc (1.1.0)
     url_mount (0.2.1)
       rack
+    warden (1.2.8)
+      rack (>= 2.0.6)
 
 PLATFORMS
   ruby
@@ -182,6 +184,7 @@ DEPENDENCIES
   rake
   rspec
   shotgun
+  warden
 
 BUNDLED WITH
    1.17.3

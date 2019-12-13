@@ -1,2 +1,3 @@
-post 'sessions', to: 'sessions#create'
-delete '/sessions/:id', to: 'sessions#destroy'
+get "/auth/failure", to: "sessions#failure"
+get "/auth/signout", to: "sessions#destroy"
+get "/auth/:provider/callback", to: "sessions#new"

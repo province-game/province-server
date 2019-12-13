@@ -4,7 +4,9 @@ module Api
       class Destroy
         include Api::Action
 
-        def call(params)
+        def call(_params)
+          warden.logout
+          redirect_to '/'
         end
       end
     end
