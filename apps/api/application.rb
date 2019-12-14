@@ -247,7 +247,7 @@ module Api
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
         include Api::Authentication
-        before :authenticate!    # run an authentication before callback
+        # before :authenticate!    # run an authentication before callback
       end
 
       # Configure the code that will yield each time Web::View is included
@@ -264,7 +264,7 @@ module Api
       end
 
       middleware.use OmniAuth::Builder do
-        provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+        provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], provider_ignores_state: true
       end
     end
 

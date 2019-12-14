@@ -15,7 +15,7 @@ module Api
     end
 
     def authenticate!
-      redirect_to '/auth/:provider/callback' unless current_user
+      redirect_to '/' unless current_user
     end
   end
 end

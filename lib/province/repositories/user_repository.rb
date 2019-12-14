@@ -1,20 +1,15 @@
 class UserRepository < Hanami::Repository
-  def self.auth!(auth_hash)
-    p auth_hash
+  def authenticate(auth_hash)
     info = auth_hash[:info]
-    google_id = info[:uid]
-    attrs = {
-      name:   info[:name],
-      email:  info[:email],
-    }
+    attributes = { name: info[:name], email: info[:email], google_id: auth_hash[:uid] }
 
-    user = query { where(google_id: attrs[:google_id]) }.first
+    user = users.where(google_id: attributes[:google_id]).first
     
-    if user.present?
-      user.update(attrs)
-      update user
+    if user.nil?
+      create User.new(attributes)
     else
-      create(User.new(attrs.merge(google_id: google_id)))
+      user.update(attributes)
+      update user
     end
   end
 end

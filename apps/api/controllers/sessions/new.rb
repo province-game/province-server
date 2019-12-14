@@ -5,7 +5,7 @@ module Api
         include Api::Action
 
         def call(_params)
-          user = UserRepository.auth!(auth_hash)
+          user = UserRepository.new.authenticate(auth_hash)
           warden.set_user user
           redirect_to '/'
         end
