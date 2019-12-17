@@ -1,3 +1,3 @@
 get "/auth/failure", to: "sessions#failure"
-get "/auth/signout", to: "sessions#destroy"
+delete "/auth/logout", to: "sessions#destroy"
 get "/auth/:provider/callback", to: "sessions#new"

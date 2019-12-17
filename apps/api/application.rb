@@ -18,10 +18,7 @@ module Api
       #
       # When you add new directories, remember to add them here.
       #
-      load_paths << [
-        'controllers',
-        'views'
-      ]
+      load_paths << %w[controllers resources]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
       # Defaults to true.
@@ -107,45 +104,7 @@ module Api
 
       # The relative path to templates
       #
-      templates 'templates'
-
-      ##
-      # ASSETS
-      #
-      assets do
-        # JavaScript compressor
-        #
-        # Supported engines:
-        #
-        #   * :builtin
-        #   * :uglifier
-        #   * :yui
-        #   * :closure
-        #
-        # See: https://guides.hanamirb.org/assets/compressors
-        #
-        # In order to skip JavaScript compression comment the following line
-        javascript_compressor :builtin
-
-        # Stylesheet compressor
-        #
-        # Supported engines:
-        #
-        #   * :builtin
-        #   * :yui
-        #   * :sass
-        #
-        # See: https://guides.hanamirb.org/assets/compressors
-        #
-        # In order to skip stylesheet compression comment the following line
-        stylesheet_compressor :builtin
-
-        # Specify sources for assets
-        #
-        sources << [
-          'assets'
-        ]
-      end
+      #templates 'templates'
 
       ##
       # SECURITY
@@ -266,6 +225,9 @@ module Api
       middleware.use OmniAuth::Builder do
         provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], provider_ignores_state: true
       end
+
+      body_parsers :json
+      controller.format jsonapi: 'application/vnd.api+json'
     end
 
     ##
@@ -291,31 +253,6 @@ module Api
       # scheme 'https'
       # host   'example.org'
       # port   443
-
-      assets do
-        # Don't compile static assets in production mode (eg. Sass, ES6)
-        #
-        # See: http://www.rubydoc.info/gems/hanami-assets#Configuration
-        compile false
-
-        # Use fingerprint file name for asset paths
-        #
-        # See: https://guides.hanamirb.org/assets/overview
-        fingerprint true
-
-        # Content Delivery Network (CDN)
-        #
-        # See: https://guides.hanamirb.org/assets/content-delivery-network
-        #
-        # scheme 'https'
-        # host   'cdn.example.org'
-        # port   443
-
-        # Subresource Integrity
-        #
-        # See: https://guides.hanamirb.org/assets/content-delivery-network/#subresource-integrity
-        subresource_integrity :sha256
-      end
     end
   end
 end

@@ -6,7 +6,7 @@ module Api
 
         def call(_params)
           warden.logout
-          redirect_to '/'
+          status 200, {}
         end
       end
     end

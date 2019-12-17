@@ -8,8 +8,7 @@ class UserRepository < Hanami::Repository
     if user.nil?
       create User.new(attributes)
     else
-      user.update(attributes)
-      update user
+      update user.id, attributes
     end
   end
 end

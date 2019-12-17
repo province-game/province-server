@@ -3,9 +3,10 @@ module Api
     module Sessions
       class Failure
         include Api::Action
+        include JSONAPI::Hanami::Action
 
         def call(_params)
-          status 404, 'Not found'
+          self.data = errors
         end
       end
     end

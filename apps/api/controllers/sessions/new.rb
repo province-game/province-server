@@ -7,7 +7,7 @@ module Api
         def call(_params)
           user = UserRepository.new.authenticate(auth_hash)
           warden.set_user user
-          redirect_to '/'
+          status 200, { user_id: user.id }
         end
 
         private
