@@ -3,10 +3,10 @@ module Api
     module Sessions
       class Failure
         include Api::Action
-        include JSONAPI::Hanami::Action
+        accept :json
 
         def call(_params)
-          self.data = errors
+          status 426, [].to_json
         end
       end
     end

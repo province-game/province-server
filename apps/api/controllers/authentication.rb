@@ -15,7 +15,7 @@ module Api
     end
 
     def authenticate!
-      redirect_to '/' unless current_user
+      status 403, [].to_json unless current_user
     end
   end
 end
