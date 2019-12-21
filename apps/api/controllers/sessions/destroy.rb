@@ -6,7 +6,7 @@ module Api
 
         def call(_params)
           warden.logout
-          status 200, {}
+          status 200, {}.to_json
         end
       end
     end

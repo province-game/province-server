@@ -6,7 +6,7 @@ module Api
         accept :json
 
         def call(_params)
-          status 426, [].to_json
+          status 426, {}.to_json
         end
       end
     end

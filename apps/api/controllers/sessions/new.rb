@@ -15,10 +15,6 @@ module Api
         def auth_hash
           request.env['omniauth.auth']
         end
-
-        def warden
-          request.env['warden']
-        end
       end
     end
   end
