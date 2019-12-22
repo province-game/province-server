@@ -21,6 +21,8 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'faker'
+  gem 'hanami-fabrication'
   gem 'rspec'
 end
 
