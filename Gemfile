@@ -3,8 +3,10 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'hanami',       '~> 1.3'
 gem 'hanami-model', '~> 1.3'
+gem 'jsonapi-hanami'
 
 gem 'omniauth-google-oauth2'
+gem 'warden'
 gem 'pg'
 
 group :development do
@@ -18,6 +20,7 @@ group :test, :development do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'rspec'
 end
 

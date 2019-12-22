@@ -1,5 +1,3 @@
-# Configure your routes here
-# See: https://guides.hanamirb.org/routing/overview
-#
-# Example:
-# get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
+get "/auth/failure", to: "sessions#failure"
+delete "/auth/logout", to: "sessions#destroy"
+get "/auth/:provider/callback", to: "sessions#new"
