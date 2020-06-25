@@ -134,7 +134,7 @@ GEM
     pg (1.1.4)
     puma (4.3.1)
       nio4r (~> 2.0)
-    rack (2.0.8)
+    rack (2.2.3)
     rake (13.0.0)
     rom (3.3.3)
       concurrent-ruby (~> 1.0)
